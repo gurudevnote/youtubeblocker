@@ -23,7 +23,7 @@ setInterval(() => {
     });
 
     //Youtube search list
-    let videos = document.querySelectorAll('#contents ytd-video-renderer');
+    let videos = document.querySelectorAll('#contents ytd-video-renderer, #contents ytd-channel-renderer');
     videos.forEach((video) => {
         let textContext = video.textContent;
         videoBlockeds.forEach((blockedVideo) => {
