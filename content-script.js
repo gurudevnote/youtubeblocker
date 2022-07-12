@@ -21,4 +21,15 @@ setInterval(() => {
             window.location.href = 'https://www.youtube.com/';
         }
     });
-}, 2000);
+
+    //Youtube search list
+    let videos = document.querySelectorAll('#contents ytd-video-renderer');
+    videos.forEach((video) => {
+        let textContext = video.textContent;
+        videoBlockeds.forEach((blockedVideo) => {
+            if (textContext.toLowerCase().indexOf(blockedVideo.toLowerCase()) >= 0) {
+                video.remove();
+            }
+        });
+    });
+}, 1000);
