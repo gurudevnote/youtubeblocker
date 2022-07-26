@@ -15,23 +15,26 @@ function domChangedHandle() {
     if (
         videoTitle !== ''
         && !videoTitle.match(/blender/i)
-        && window.location.href !== 'https://www.youtube.com/'
+        && window.location.href !== 'https://www.youtube.com/results?search_query=blender'
     ) {
         let hour = new Date().getHours();
         if (hour !== 10) {
-            window.location.href = 'https://www.youtube.com/';
+            window.location.href = 'https://www.youtube.com/results?search_query=blender';
+            observer.disconnect();
         }
     }
 
     chanelBlockeds.forEach((chanel) => {
         if (chanelName.toLowerCase().indexOf(chanel.toLowerCase()) >= 0) {
             window.location.href = 'https://www.youtube.com/';
+            observer.disconnect();
         }
     });
 
     videoBlockeds.forEach((video) => {
         if (videoTitle.toLowerCase().indexOf(video.toLowerCase()) >= 0) {
             window.location.href = 'https://www.youtube.com/';
+            observer.disconnect();
         }
     });
 
@@ -51,4 +54,5 @@ function domChangedHandle() {
 const observer = new MutationObserver(domChangedHandle)
 const targetNode = document.body;
 const config = { attributes: true, childList: true, subtree: true };
-observer.observe(targetNode, config);
+
+setTimeout(() => observer.observe(targetNode, config), 3000);
